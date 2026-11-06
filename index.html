@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#39256d">
+  <meta name="description" content="Aplikasi pemindaian dan penilaian lembar jawaban siswa SMP Negeri 1 Nabire Barat.">
+  <title>App Scan Lembar Jawab Siswa</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="./js/config.js"></script>
+  <script src="./js/api.js" defer></script>
+  <script src="./js/deps.js" defer></script>
+  <script src="./js/answer-sheet.js" defer></script>
+  <script src="./js/omr.js" defer></script>
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+  <section id="loginView" class="login-view">
+    <div class="login-art">
+      <div class="login-brand"><span class="brand-symbol">S</span><span>SCAN<span class="brand-light">LJS</span></span></div>
+      <div class="login-art-copy">
+        <span class="eyebrow">PENILAIAN DIGITAL SEKOLAH</span>
+        <h1>Pemeriksaan ujian lebih cepat, akurat, dan terukur.</h1>
+        <p>Kelola ujian, pindai lembar jawaban, verifikasi hasil, dan pantau perkembangan akademik dalam satu aplikasi.</p>
+      </div>
+      <div class="login-art-footer">SMP NEGERI 1 NABIRE BARAT</div>
+      <div class="orb orb-one"></div><div class="orb orb-two"></div>
+    </div>
+    <div class="login-panel">
+      <div class="login-panel-inner">
+        <div class="mobile-brand"><span class="brand-symbol">S</span><strong>SCAN LJS</strong></div>
+        <span class="eyebrow purple">SELAMAT DATANG</span>
+        <h2>Masuk ke aplikasi</h2>
+        <p class="muted">Gunakan akun Google yang telah didaftarkan oleh administrator sekolah.</p>
+        <div id="googleSignIn" class="google-signin"></div>
+        <div id="loginMessage" class="inline-message" aria-live="polite"></div>
+        <div class="login-security"><span class="security-dot"></span> Akses terlindungi dengan autentikasi Google</div>
+        <div class="login-school">App Scan Lembar Jawab Siswa · Versi 1.0</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="appShell" class="app-shell hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-symbol">S</span>
+        <div><strong>SCAN LJS</strong><small>LEMBAR JAWAB SISWA</small></div>
+      </div>
+      <div class="school-chip"><span class="school-avatar">N</span><span><b>SMP Negeri 1</b><small>Nabire Barat</small></span></div>
+      <nav id="navMenu" class="nav-menu" aria-label="Navigasi utama"></nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user"><div class="avatar" id="sideAvatar">U</div><div class="user-meta"><b id="sideName">Pengguna</b><small id="sideRole">Akun</small></div><button class="icon-button logout-mini" data-action="logout" title="Keluar">↗</button></div>
+        <button class="sidebar-logout" data-action="logout"><span>⇥</span> Keluar aplikasi</button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="mobileMenu" class="icon-button mobile-menu" aria-label="Buka menu">☰</button>
+          <div><div class="topbar-kicker">SMP NEGERI 1 NABIRE BARAT</div><h1 id="pageTitle">Dashboard</h1></div>
+        </div>
+        <div class="topbar-actions">
+          <button id="installApp" class="btn btn-light btn-sm hidden" data-action="install-app">＋ Pasang App</button>
+          <div class="connection-pill" id="connectionStatus"><span></span> Terhubung</div>
+          <button class="icon-button" data-action="refresh" title="Muat ulang">↻</button>
+          <div class="topbar-user"><div class="avatar avatar-small" id="topAvatar">U</div><div><b id="topName">Pengguna</b><small id="topRole">Akun</small></div></div>
+        </div>
+      </header>
+      <main id="pageContent" class="page-content" tabindex="-1">
+        <div class="loading-state"><div class="spinner"></div><span>Menyiapkan aplikasi...</span></div>
+      </main>
+      <footer class="app-footer"><span>© <span id="yearNow"></span> SMP Negeri 1 Nabire Barat</span><span>App Scan Lembar Jawab Siswa <b>v1.0</b></span></footer>
+    </div>
+  </div>
+
+  <div id="modalRoot"></div>
+  <div id="toastRoot" class="toast-root" aria-live="polite"></div>
+  <div id="printRoot" class="print-root"></div>
+</body>
+</html>
