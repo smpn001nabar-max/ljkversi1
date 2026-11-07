@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sljs-static-v1';
+const CACHE_NAME = 'sljs-static-v2';
 const ASSETS = [
   './', './index.html', './manifest.json', './css/style.css',
   './js/config.js', './js/api.js', './js/deps.js', './js/answer-sheet.js', './js/omr.js', './js/app.js',
