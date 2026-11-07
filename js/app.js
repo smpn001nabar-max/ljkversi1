@@ -569,7 +569,16 @@
     const updateConnection=()=>{const el=$('#connectionStatus');if(!el)return;el.innerHTML=navigator.onLine?'<span></span> Terhubung':'<span style="background:#DC2626;box-shadow:0 0 0 3px #FDECEC"></span> Offline';};
     window.addEventListener('online',updateConnection);window.addEventListener('offline',updateConnection);updateConnection();
     document.addEventListener('click',handleClick);
-    document.addEventListener('submit',handleSubmit);
+    // Intercept application forms in capture phase so the browser never performs
+    // a native full-page form submission (which would reload the app and can
+    // make an invalid/old session appear as a return to the login screen).
+    document.addEventListener('submit', function(event) {
+      const form = event.target;
+      if (!form || !['entityForm','examForm','keysForm','settingsForm'].includes(form.id)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      handleSubmit(event);
+    }, true);
     document.addEventListener('change',async event=>{
       if(event.target.id==='scanFiles'){
         const files=Array.from(event.target.files||[]);if(files.length){try{await processFiles(files);}catch(e){toast(e.message,'error');}}
